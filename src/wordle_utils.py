@@ -1,7 +1,33 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Mar  3 10:33:39 2022
+
+@author: bhook
+
+helper utilities for wordle
+
+"""
+
 import random
 
 
-def subwords_containing(wordlist, letters=['e', 't', 'a', 's']):
+def subwords_containing(wordlist, letters=["e", "t", "a", "s"]):
+    """
+    return a list of words containing the specified list of letters.
+
+    Parameters
+    ----------
+    wordlist : TYPE
+        DESCRIPTION.
+    letters : TYPE, optional
+        DESCRIPTION. The default is ["e", "t", "a", "s"].
+
+    Returns
+    -------
+    return_list : TYPE
+        DESCRIPTION.
+
+    """
 
     return_list = list()
     match_count = len(letters)
@@ -22,27 +48,23 @@ def subwords_containing(wordlist, letters=['e', 't', 'a', 's']):
     return return_list
 
 
-def letter_at_pos(wordlist, letter, pos):
-    return_list = list()
-    for word in wordlist:
-        if word[pos] == letter:
-            return_list.append(word)
-
-    return return_list
-
-
-def letter_not_at_pos(wordlist, letter, pos):
-    return_list = list()
-    for word in wordlist:
-        if word[pos] == letter:
-            pass
-        else:
-            return_list.append(word)
-
-    return return_list
-
-
 def subwords_not_containing(wordlist, letters=[]):
+    """
+    return a list of words NOT containing the specified list of letters
+
+    Parameters
+    ----------
+    wordlist : TYPE
+        DESCRIPTION.
+    letters : TYPE, optional
+        DESCRIPTION. The default is [].
+
+    Returns
+    -------
+    TYPE
+        DESCRIPTION.
+
+    """
     match_count = len(letters)
     count = 0
     return_list = list()
@@ -62,108 +84,82 @@ def subwords_not_containing(wordlist, letters=[]):
     return sorted(return_list)
 
 
-def get_starting_word(five_letter_words):
-    #good_starting_words = subwords_containing(
-    #    five_letter_words, letters=['e', 't', 'i'])
+def letter_at_pos(wordlist, letter, pos):
+    """
+    return words containing the specifed letter at the specified position.
 
-    while True:
-        starting_word = five_letter_words[random.randint(
-            0, len(five_letter_words))-1]
-        choice = input(
-            f'Press [c] to continue with [{starting_word.upper()}] as your starting word, or enter to generate a new one: ').strip()
-        if choice == 'c':
-            return starting_word.strip()
+    Parameters
+    ----------
+    wordlist : TYPE
+        DESCRIPTION.
+    letter : TYPE
+        DESCRIPTION.
+    pos : TYPE
+        DESCRIPTION.
 
+    Returns
+    -------
+    return_list : TYPE
+        DESCRIPTION.
 
-def remove_words_with_letter_at_pos(word_list, letter, pos):
-    # remove words with letters in the wrong positions
-    words_to_exclude = letter_at_pos(word_list, letter, pos)
-
-    for word in words_to_exclude:
-        if word in word_list:
-            word_list.remove(word)
-
-    return word_list
-
-
-def remove_duplicates_of(word_list, letter):
+    """
     return_list = list()
-    for word in word_list:
-        letter_count = 0
-        for l in word:
-            if l == letter:
-                letter_count += 1
-        if letter_count <= 1:
-            # print(word)
-            #p = input('pause')
+    for word in wordlist:
+        if word[pos] == letter:
             return_list.append(word)
 
     return return_list
 
 
-def main():
+def letter_not_at_pos(wordlist, letter, pos):
+    """
+    return words NOT containing the specifed letter at the specified position.
 
-    # read in our full list of english words
-    with open('words_alpha.txt', 'r') as wf:
-        words = wf.readlines()
+    Parameters
+    ----------
+    wordlist : TYPE
+        DESCRIPTION.
+    letter : TYPE
+        DESCRIPTION.
+    pos : TYPE
+        DESCRIPTION.
 
-    # keep only the five letter words
-    five_letter_words = list()
+    Returns
+    -------
+    return_list : TYPE
+        DESCRIPTION.
 
-    for word in words:
-        if len(word.strip()) == 5:
-            five_letter_words.append(word)
+    """
+    return_list = list()
+    for word in wordlist:
+        if word[pos] == letter:
+            pass
+        else:
+            return_list.append(word)
 
-    print(len(five_letter_words))
-
-    #starting_word = get_starting_word(five_letter_words)
-    # print(starting_word)
-
-    # keep words containing the specific letters
-    word_list = subwords_containing(five_letter_words, letters=['u', 's', 'e'])
-
-    # remove words containing the incorrect letters
-    word_list = subwords_not_containing(word_list, ['m', 't', 'o'])
-
-    word_list = remove_duplicates_of(word_list, 's')
-
-    #word_list = letter_not_at_pos(word_list,'s',0)
-    #word_list = letter_not_at_pos(word_list,'s',4)
-    #word_list = letter_not_at_pos(word_list,'e',2)
-
-    word_list = letter_at_pos(word_list, 'u', 2)
-    word_list = letter_at_pos(word_list, 's', 3)
-    word_list = letter_at_pos(word_list, 'e', 4)
-    #word_list = letter_not_at_pos(word_list,'h',1)
-    #word_list = letter_not_at_pos(word_list,'i',2)
-
-    # for i in range(1,5):
-    #    word_list = remove_words_with_letter_at_pos(word_list, 's', i)
-
-    #total_word_list = list()
-
-    #   word_list = letter_at_pos(word_list,'s',0)
-
-    # there is only 1 S
-    # word_list = remove_duplicates_of(word_list,'s')
-
-    #total_word_list = sorted(word_list_1+word_list_4)
-
-    # for word in a_words_to_remove:
-    #    if word in total_word_list:
-    #        i = total_word_list.index(word)
-    #        total_word_list.pop(i)
-    #print(f'I removed {total_word_list[i]}')
-
-    #total_word_list = subwords_not_containing(total_word_list,'a')
-
-    i = 0
-
-    for index, word in enumerate(word_list):
-        # if word.startswith('t') and word.endswith('se'):
-        i += 1
-        print(f'{i}.\t{word}')
+    return return_list
 
 
-if __name__ == '__main__':
-    main()
+def get_starting_word(five_letter_words):
+    """
+    present the user with random words to start with.
+    return the word
+
+    Parameters
+    ----------
+    five_letter_words : TYPE
+        DESCRIPTION.
+
+    Returns
+    -------
+    TYPE
+        DESCRIPTION.
+
+    """
+    while True:
+        starting_word = five_letter_words[random.randint(0, len(five_letter_words)) - 1]
+        choice = input(
+            f"Press [c] to continue with [{starting_word.upper()}] as your starting word, or enter to generate a new one: "
+        ).strip()
+        if choice == "c":
+            return starting_word.strip()

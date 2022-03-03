@@ -33,4 +33,7 @@ vivid
 spill
 chant
 choke
-rupeealeak
+rupee
+nasty
+
+

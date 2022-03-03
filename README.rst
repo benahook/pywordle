@@ -1,4 +1,4 @@
-**PYWORDLE**
+**WORDLEPY**
 ======
 python wordle utilities:
 - word suggestions

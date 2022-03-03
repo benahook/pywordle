@@ -1,19 +1,48 @@
-# pywordle
+
+## wordlepy
 python wordle utilities: word suggestions - autosolver - wordcloud generator - wordle simulator
 
+(we called it wordlepy since pywordle was taken on pypi)
+
 # USAGE
+
+```sh
+$ pip install -r requirements.txt
 $ cd src
 $ python3 wordle_class.py
+```
 
+# Description
 The program will walk you through the steps for solving a wordle by process
-of elimation. 
+of elimination. 
 
-This is a work in progress!
+The *full* English language word list is loaded from "words_alpha.txt"
+This was pulled from:
+[https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt](https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt)
 
-*Known Bugs:
-- if a word has duplicate letters, you pick 'right' for one and 'wrong' for another
-it will return an empty list. 
+The frequency list was pulled from
+[frequencylist.com](http://frequencylist.com)
 
-the wrong choice needs to account for duplicates. 
+So far, every wordle solution we've found has been present on this word list. 
 
-- The solved wordle list isn't currently loaded back in. (therefore picking a previous wordle solution is possible.)
+*HOWEVER*
+
+Not all wordle solutions have had a frequency associated on the frequency list here.
+Because of this, we only display a words relative frequency IF it has one. 
+
+This number should be used to help the user make good guesses (since most wordle words are semi common) (besides tacit of course. WTH was that?)
+
+# Disclaimer
+This code has no affiliation to wordle or any of the companies that own said game. 
+If using this program negatively affects your streaks/stats/experience/well-being... We're sorry. Maybe don't use it?
+
+If using this program positively affects your experience... Awesome! Just don't pretend to be a braniac and post all over your socials about it. 
+
+enjoy. 
+
+# Contributing
+Please do! This is just a starting point and could use some serious work/devlopment!
+All
+
+#  Contact
+
