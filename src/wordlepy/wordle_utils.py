@@ -161,5 +161,5 @@ def get_starting_word(five_letter_words):
         choice = input(
             f"Press [c] to continue with [{starting_word.upper()}] as your starting word, or enter to generate a new one: "
         ).strip()
-        if choice == "c":
+        if choice.lower() == "c":
             return starting_word.strip()

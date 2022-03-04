@@ -17,9 +17,15 @@ random word if desired, then iterate through each word eliminating words each
 step until a solution is found OR they run out of guesses.
 
 """
-import pandas as pd
-import wordle_utils
 
+
+
+import pandas as pd
+import os
+import sys
+# set the path so we can find our modules
+sys.path.append(os.path.join(os.path.dirname(__file__), '../../'))
+import src.wordlepy.wordle_utils as wordle_utils
 
 class Word:
     """
@@ -177,7 +183,7 @@ def main():
     print("Loading full wordlist(s)...")
 
     # read in our full list of english words
-    with open("words_alpha.txt", "r") as words_file:
+    with open(os.path.dirname(__file__)+"/words_alpha.txt", "r") as words_file:
         words = words_file.readlines()
 
     # keep only the five letter words
@@ -189,7 +195,7 @@ def main():
 
     # Load list of common words to show a relative frequency
     try:
-        df = pd.read_excel("frequency_list.xlsx",
+        df = pd.read_excel(os.path.dirname(__file__)+"/frequency_list.xlsx",
                            sheet_name=2, skiprows=1, index_col=1)
     except OSError:
         print("failed to find or load the the word frequency list.")
@@ -205,7 +211,7 @@ def main():
 
     print("Removing prior wordle solutions from the list...")
 
-    with open("wordle_solutions.txt") as solutions_file:
+    with open(os.path.dirname(__file__)+"/wordle_solutions.txt") as solutions_file:
         solutions = solutions_file.readlines()
         solutions = [solution.strip() for solution in solutions]
 
@@ -255,7 +261,7 @@ def main():
 
             if word.solved:
                 print(f"{word.word} is the answer! Congrats!")
-                with open("wordle_solutions.txt", "a") as outfile:
+                with open(os.path.dirname(__file__)+"/wordle_solutions.txt", "a") as outfile:
                     # manually strip any newline chars
                     outword = word.word.strip()
                     # then append a windows line ending
