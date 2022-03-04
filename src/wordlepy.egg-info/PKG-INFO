@@ -1,25 +1,25 @@
 Metadata-Version: 2.1
 Name: wordlepy
-Version: version.number-.0.0.0
+Version: 1.0
 Summary: python wordle utilities
 Author: Ben Hook
 Author-email: benahook@gmail.com
 License: GNU
 Platform: UNKNOWN
-Classifier: Development Status :: 0 - Beta
+Classifier: Development Status :: 4 - Beta
 Classifier: Environment :: Console
-Classifier: Intended Audience :: Everyone
-Classifier: License :: GNU License
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: Freeware
 Classifier: Operating System :: OS Independent
 Classifier: Programming Language :: Cython
 Classifier: Programming Language :: Python
 Classifier: Programming Language :: Python :: 3
-Classifier: Topic :: Wordgames
+Classifier: Topic :: Games/Entertainment
 Requires-Python: >=3.6
 License-File: LICENSE
 
 **WORDLEPY**
-======
+============
 python wordle utilities:
 - word suggestions
 - autosolver

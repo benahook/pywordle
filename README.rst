@@ -1,5 +1,5 @@
 **WORDLEPY**
-======
+============
 python wordle utilities:
 - word suggestions
 - autosolver
