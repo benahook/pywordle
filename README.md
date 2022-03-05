@@ -4,13 +4,30 @@ python wordle utilities: word suggestions - autosolver - wordcloud generator - w
 
 (we called it wordlepy since pywordle was taken on pypi)
 
-## USAGE
+## Install
+
+- via github:
+```sh
+$ git clone https://github.com/benahook/wordlepy.git
+$ cd wordlepy
+$ pip install -r requirements.txt```
+```
+- via pip
+```sh
+$ pip install wordlepy
+```
+
+## Usage
 
 ```sh
-$ pip install -r requirements.txt
-$ cd src
+$ cd wordlepy/src
 $ python3 wordle_class.py
 ```
+Or if you installed via PIP:
+```sh
+$ python -m wordlepy.wordle_class
+```
+An optional Windows built .exe will be availble shortly as well.
 
 ## Description
 The program will walk you through the steps for solving a wordle by process
@@ -44,5 +61,5 @@ enjoy.
 Please do! This is just a starting point and could use some serious work/development!
 All comments/questions/concerns are welcomed.
 
-#  Contact
+## Contact
 [benahook@gmail.com](mailto:benahook@gmail.com)
