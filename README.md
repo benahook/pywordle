@@ -4,6 +4,20 @@ python wordle utilities: word suggestions - autosolver - wordcloud generator - w
 
 (we called it wordlepy since pywordle was taken on pypi)
 
+## Screenshots
+
+- Example run:
+
+![terminal-screenshot](assets/images/runtime_example.png)
+
+- Winning stats from using this tool:
+
+![statistics-using-tool](assets/images/screenshot.png)
+
+- Wordcloud of past wordle solutions for visualization:
+
+![wordcloud-example](assets/images/word_cloud.png)
+
 ## Install
 
 - via github:
