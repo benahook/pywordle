@@ -10,6 +10,8 @@ python wordle utilities: word suggestions - autosolver - wordcloud generator - w
 
 ![terminal-screenshot](assets/images/runtime_example.png)
 
+![website-screenshot](assets/images/wordle_site_example.png)
+
 - Winning stats from using this tool:
 
 ![statistics-using-tool](assets/images/screenshot.png)
