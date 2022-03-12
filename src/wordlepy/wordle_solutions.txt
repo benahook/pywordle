@@ -40,3 +40,8 @@ ahead
 brine
 cloth
 hoard
+sweet
+month
+lapse
+watch
+today

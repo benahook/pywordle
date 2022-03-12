@@ -24,8 +24,8 @@ import pandas as pd
 import os
 import sys
 # set the path so we can find our modules
-sys.path.append(os.path.join(os.path.dirname(__file__), '../../'))
-import src.wordlepy.wordle_utils as wordle_utils
+sys.path.append(os.path.join(os.path.dirname(__file__)))
+import wordle_utils
 
 class Word:
     """
@@ -81,7 +81,7 @@ class Word:
                 # change the current letter to 'misplaced' from 'wrong'
                 dup_count = 0
                 for sub_letter in self.letters:
-                    if sub_letter.letter == letter.letter:
+                    if sub_letter.letter == letter.letter and sub_letter.state == "right" or sub_letter.state == "misplaced":
                         dup_count += 1
 
                 if dup_count > 1:
