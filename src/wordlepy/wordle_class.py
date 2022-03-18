@@ -4,7 +4,7 @@ Created on Thu Mar  3 10:22:25 2022
 
 @author: bhook
 
-class implemtation of a wordle word. 
+class implemtation of a wordle word.
 each word consists of letters that have states from the game
 
 unknown: untested letter
@@ -12,20 +12,21 @@ correct: (right letter, right position)
 wrong: letter does not exist in the word
 misplaced: (right letter, wrong position)
 
-this module will allow the user to load ~all posible wordle solutions, pick a 
-random word if desired, then iterate through each word eliminating words each 
+this module will allow the user to load ~all posible wordle solutions, pick a
+random word if desired, then iterate through each word eliminating words each
 step until a solution is found OR they run out of guesses.
 
 """
 
 
-
+import wordle_utils
 import pandas as pd
 import os
 import sys
+
 # set the path so we can find our modules
 sys.path.append(os.path.join(os.path.dirname(__file__)))
-import wordle_utils
+
 
 class Word:
     """
@@ -51,8 +52,57 @@ class Word:
         self.word = word
         self.letters = list()
         self.solved = False
+        # set all letters to an unknown status initially
         for letter in word:
             self.letters.append(Letter(letter, "unknown"))
+
+    def check_if_solved(self):
+        """
+        convienence function to check if solved
+        (all letters have 'right' status)
+
+        Returns
+        -------
+        None.
+
+        """
+        count = 0
+        for letter in self.letters:
+            if letter.state == "right":
+                count += 1
+
+        if count == 5:
+            self.solved = True
+            return True
+        else:
+            self.solved = False
+            return False
+
+    def upper(self):
+        """
+        convenience function to return uppercase
+        version of word.word
+
+        Returns
+        -------
+        TYPE
+            DESCRIPTION.
+
+        """
+        return self.word.upper()
+
+    def lower(self):
+        """
+        convenience function to return lowercase
+        version of word.word
+
+        Returns
+        -------
+        TYPE
+            DESCRIPTION.
+
+        """
+        return self.word.lower()
 
     def update(self):
         """
@@ -81,7 +131,9 @@ class Word:
                 # change the current letter to 'misplaced' from 'wrong'
                 dup_count = 0
                 for sub_letter in self.letters:
-                    if sub_letter.letter == letter.letter and sub_letter.state == "right" or sub_letter.state == "misplaced":
+                    if sub_letter.letter == letter.letter and (
+                        sub_letter.state == "right" or sub_letter.state == "misplaced"
+                    ):
                         dup_count += 1
 
                 if dup_count > 1:
@@ -96,8 +148,7 @@ class Word:
                 letter.state = "misplaced"
 
             else:
-                print(
-                    "Invalid choice. The only options are [r/w/m] try again.")
+                print("Invalid choice. The only options are [r/w/m] try again.")
                 retry = True
                 self.update()
                 # break out if the user has retried the input.
@@ -157,16 +208,12 @@ def get_remaining_words(word_list, word=Word):
     for index, letter in enumerate(word.letters):
 
         if letter.state == "right":
-            word_list = wordle_utils.letter_at_pos(
-                word_list, letter.letter, index)
+            word_list = wordle_utils.letter_at_pos(word_list, letter.letter, index)
         elif letter.state == "wrong":
-            word_list = wordle_utils.subwords_not_containing(
-                word_list, [letter.letter])
+            word_list = wordle_utils.subwords_not_containing(word_list, [letter.letter])
         elif letter.state == "misplaced":
-            word_list = wordle_utils.subwords_containing(
-                word_list, [letter.letter])
-            word_list = wordle_utils.letter_not_at_pos(
-                word_list, letter.letter, index)
+            word_list = wordle_utils.subwords_containing(word_list, [letter.letter])
+            word_list = wordle_utils.letter_not_at_pos(word_list, letter.letter, index)
 
     return word_list
 
@@ -183,7 +230,7 @@ def main():
     print("Loading full wordlist(s)...")
 
     # read in our full list of english words
-    with open(os.path.dirname(__file__)+"/words_alpha.txt", "r") as words_file:
+    with open(os.path.dirname(__file__) + "/words_alpha.txt", "r") as words_file:
         words = words_file.readlines()
 
     # keep only the five letter words
@@ -195,8 +242,12 @@ def main():
 
     # Load list of common words to show a relative frequency
     try:
-        df = pd.read_excel(os.path.dirname(__file__)+"/frequency_list.xlsx",
-                           sheet_name=2, skiprows=1, index_col=1)
+        df = pd.read_excel(
+            os.path.dirname(__file__) + "/frequency_list.xlsx",
+            sheet_name=2,
+            skiprows=1,
+            index_col=1,
+        )
     except OSError:
         print("failed to find or load the the word frequency list.")
         print("setting the frequency list to an empty dataframe.")
@@ -211,7 +262,7 @@ def main():
 
     print("Removing prior wordle solutions from the list...")
 
-    with open(os.path.dirname(__file__)+"/wordle_solutions.txt") as solutions_file:
+    with open(os.path.dirname(__file__) + "/wordle_solutions.txt") as solutions_file:
         solutions = solutions_file.readlines()
         solutions = [solution.strip() for solution in solutions]
 
@@ -224,9 +275,11 @@ def main():
                     word_list.remove(solution)
         except ValueError:
             print(
-                f'[{solution}] from the solutions file doesnt appear in the word list.')
+                f"[{solution}] from the solutions file doesnt appear in the word list."
+            )
             print(
-                'This shouldn\'t happen unless the solutions file was modified externally.')
+                "This shouldn't happen unless the solutions file was modified externally."
+            )
 
     print(f"{len(word_list)} five letter words remain. Done.")
 
@@ -234,8 +287,7 @@ def main():
     for i in range(6):
 
         # ask the user for their initial guess
-        guess_word = input(
-            'Input your word (or type "random") then hit [ENTER]: ')
+        guess_word = input('Input your word (or type "random") then hit [ENTER]: ')
 
         # if the user accidentally selects the word index
         # select the word accompanying that number for them:
@@ -245,7 +297,7 @@ def main():
         guess_word = guess_word.strip()
 
         if guess_word.lower() == "random":
-            guess_word = wordle_utils.get_starting_word(word_list)
+            guess_word = wordle_utils.get_starting_word(word_list, automated=False)
 
         guess_word = guess_word.lower()
 
@@ -253,6 +305,7 @@ def main():
 
         if guess_word in five_letter_words:
 
+            # initialize wordle word class with guess word str
             word = Word(guess_word)
 
             print(f'Check "{word.word}" on Wordle then:\n')
@@ -261,7 +314,9 @@ def main():
 
             if word.solved:
                 print(f"{word.word} is the answer! Congrats!")
-                with open(os.path.dirname(__file__)+"/wordle_solutions.txt", "a") as outfile:
+                with open(
+                    os.path.dirname(__file__) + "/wordle_solutions.txt", "a"
+                ) as outfile:
                     # manually strip any newline chars
                     outword = word.word.strip()
                     # then append a windows line ending
@@ -278,8 +333,7 @@ def main():
                     for index, word in enumerate(word_list):
                         try:
                             print(
-                                index, ". ", word, "\t", df.loc[word, "FREQUENCY"].max(
-                                )
+                                index, ". ", word, "\t", df.loc[word, "FREQUENCY"].max()
                             )
                         except KeyError:
                             print(index, ". ", word)
@@ -288,11 +342,10 @@ def main():
 
         else:
             if guess_word in solutions:
-                print(f'[{guess_word}] is a previous solution. Try again. Exit.')
+                print(f"[{guess_word}] is a previous solution. Try again. Exit.")
                 break
             else:
-                print(
-                    f"{guess_word} doesn't appear to be in the wordlist. Exit.")
+                print(f"{guess_word} doesn't appear to be in the wordlist. Exit.")
                 break
 
 

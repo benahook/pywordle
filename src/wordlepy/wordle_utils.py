@@ -140,7 +140,7 @@ def letter_not_at_pos(wordlist, letter, pos):
     return return_list
 
 
-def get_starting_word(five_letter_words):
+def get_starting_word(five_letter_words, automated=False):
     """
     present the user with random words to start with.
     return the word
@@ -156,10 +156,17 @@ def get_starting_word(five_letter_words):
         DESCRIPTION.
 
     """
-    while True:
-        starting_word = five_letter_words[random.randint(0, len(five_letter_words)) - 1]
-        choice = input(
-            f"Press [c] to continue with [{starting_word.upper()}] as your starting word, or enter to generate a new one: "
-        ).strip()
-        if choice.lower() == "c":
-            return starting_word.strip()
+
+    if automated:
+        return five_letter_words[random.randint(0, len(five_letter_words)) - 1]
+
+    else:
+        while True:
+            starting_word = five_letter_words[
+                random.randint(0, len(five_letter_words)) - 1
+            ]
+            choice = input(
+                f"Press [c] to continue with [{starting_word.upper()}] as your starting word, or enter to generate a new one: "
+            ).strip()
+            if choice.lower() == "c":
+                return starting_word.strip()

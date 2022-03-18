@@ -45,3 +45,7 @@ month
 lapse
 watch
 today
+smelt
+tease
+cater
+movie
