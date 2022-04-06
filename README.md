@@ -1,6 +1,6 @@
 
 # wordlepy
-python wordle utilities: word suggestions - autosolver - wordcloud generator - wordle simulator
+python wordle utilities: word suggestions - autosolver - wordle simulator
 
 (we called it wordlepy since pywordle was taken on pypi)
 
@@ -15,10 +15,6 @@ python wordle utilities: word suggestions - autosolver - wordcloud generator - w
 - Winning stats from using this tool:
 
 ![statistics-using-tool](assets/images/screenshot.png)
-
-- Wordcloud of past wordle solutions for visualization:
-
-![wordcloud-example](assets/images/word_cloud.png)
 
 ## Install
 
@@ -38,10 +34,12 @@ $ pip install wordlepy
 ```sh
 $ cd wordlepy/src
 $ python3 wordle_class.py
+$ python3 wordlebot.py
 ```
 Or if you installed via PIP:
 ```sh
 $ python -m wordlepy.wordle_class
+$ python -m wordlepy.wordlebot
 ```
 An optional Windows built .exe will be availble shortly as well.
 

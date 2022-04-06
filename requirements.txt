@@ -1,5 +1,4 @@
-wordcloud
-matplotlib
 pandas
 openpyxl
+selenium
 -e .
