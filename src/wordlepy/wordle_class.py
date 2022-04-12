@@ -132,7 +132,7 @@ class Word:
                 dup_count = 0
                 for sub_letter in self.letters:
                     if sub_letter.letter == letter.letter and (
-                        sub_letter.state == "right" or sub_letter.state == "misplaced"
+                        sub_letter.state == "right" or sub_letter.state == "misplaced" or sub_letter.state == "unknown"
                     ):
                         dup_count += 1
 
