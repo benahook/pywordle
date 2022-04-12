@@ -18,14 +18,14 @@ step until a solution is found OR they run out of guesses.
 
 """
 
+import os
+import sys
+# set the path so we can find our modules
+sys.path.append(os.path.join(os.path.dirname(__file__)))
 
 import wordle_utils
 import pandas as pd
-import os
-import sys
 
-# set the path so we can find our modules
-sys.path.append(os.path.join(os.path.dirname(__file__)))
 
 
 class Word:

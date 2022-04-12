@@ -9,7 +9,6 @@ src/wordlepy/wordle_class.py
 src/wordlepy/wordle_solutions.txt
 src/wordlepy/wordle_utils.py
 src/wordlepy/wordlebot.py
-src/wordlepy/wordlebot_solutions.txt
 src/wordlepy/words_alpha.txt
 src/wordlepy.egg-info/PKG-INFO
 src/wordlepy.egg-info/SOURCES.txt
