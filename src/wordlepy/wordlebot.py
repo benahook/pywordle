@@ -1,6 +1,10 @@
+import os
+import sys
+# set the path so we can find our modules
+sys.path.append(os.path.join(os.path.dirname(__file__)))
+
 import random
 import time
-import os
 import pandas as pd
 
 from selenium import webdriver
