@@ -2,7 +2,8 @@
 """
 Created on Thu Mar  3 10:22:25 2022
 
-@author: bhook
+@author: bhook 
+Tested by Gumby
 
 class implemtation of a wordle word.
 each word consists of letters that have states from the game
