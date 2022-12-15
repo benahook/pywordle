@@ -50,7 +50,12 @@ class Word:
         None.
 
         """
-        self.word = word
+
+        if len(word) != 5:
+            raise ValueError('Invalid length word passed! Words must be exactly 5 characters.')
+        else:
+            self.word = word
+
         self.letters = list()
         self.solved = False
         # set all letters to an unknown status initially
