@@ -23,3 +23,11 @@ class TestWordClass(unittest.TestCase):
         test_word = Word(word="hired")
         result = test_word.check_if_solved()
         self.assertFalse(result)
+
+    def test_upper(self):
+        """
+        verify the uppercase convenience function
+        """
+        test_word = Word(word="lower")
+        result = test_word.upper()
+        self.assertEqual(result, "LOWER", "uppercase function has failed!")
