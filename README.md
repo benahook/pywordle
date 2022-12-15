@@ -1,8 +1,17 @@
+[![Build Status](https://app.travis-ci.com/benahook/wordlepy.svg?branch=master)](https://app.travis-ci.com/benahook/wordlepy)
+
 
 # wordlepy
 python wordle utilities: word suggestions - autosolver - wordle simulator
 
 (we called it wordlepy since pywordle was taken on pypi)
+
+** NOTE **
+wordlebot is no longer functional since the archive at:
+https://www.devangthakkar.com/wordle_archive/
+is no longer live (thanks to NYT)
+
+It is left here in the hopes that we will someday be able to use it again!
 
 ## Screenshots
 
